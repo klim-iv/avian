@@ -289,9 +289,9 @@ dlltool = dlltool
 vg = nice valgrind --num-callers=32 --db-attach=yes --freelist-vol=100000000
 vg += --leak-check=full --suppressions=valgrind.supp
 db = gdb --args
-javac = "$(JAVA_HOME)/bin/javac" -encoding UTF-8
-javah = "$(JAVA_HOME)/bin/javah"
-jar = "$(JAVA_HOME)/bin/jar"
+javac = "$(shell (which javac))" -encoding UTF-8
+javah = "$(shell (which javah))"
+jar = "$(shell (which jar))"
 strip = strip
 strip-all = --strip-all
 
@@ -312,8 +312,7 @@ endif
 # note that we suppress the non-virtual-dtor warning because we never
 # use the delete operator, which means we don't need virtual
 # destructors:
-warnings = -Wall -Wextra -Werror -Wunused-parameter -Winit-self \
-	-Wno-non-virtual-dtor
+warnings =
 
 target-cflags = -DTARGET_BYTES_PER_WORD=$(pointer-size)
 
